@@ -1,0 +1,7 @@
+/logs/*
+/logs_train/*
+/output/hr/*
+/output/lr/*
+/output/psnr/*
+/model_zoo/*
+/.idea
