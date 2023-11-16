@@ -2,7 +2,7 @@
 /logs_train/*
 /output/hr/*
 /output/lr/*
-/output/psnr/*
+/output/sr/*
 /model_zoo/*
 /.idea
-/_pycache_
+/__pycache__

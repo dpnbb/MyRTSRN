@@ -7,7 +7,7 @@ from DIV2KValidDataset import DIV2KValidDataset
 
 device = torch.device("cuda")
 
-resume_model = "model_zoo/rtsrn_9.pth"
+resume_model = "model_zoo/rtsrn_4.pth"
 model = rtsrn(4)
 model = torch.load(resume_model)
 model = model.to(device)

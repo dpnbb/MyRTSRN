@@ -37,11 +37,21 @@ logging.debug("训练数据集的长度为：{}".format(len(trainDataset)))
 loss_fn = nn.L1Loss()
 loss_fn = loss_fn.to(device)
 
+# 恢复训练
+if False:
+    resume_model = "model_zoo/rtsrn_6.pth"
+    model = torch.load(resume_model)
+    resume_epoch = resume_model.split("_")[-1].split(".")[0]
+    resume_epoch = int(resume_epoch) + 1
+    total_valid_step = resume_epoch
+    total_train_step = resume_epoch * len(trainDataloader)
+
 # 优化器
 # learning_rate = 0.01
 # 1e-2=1 x (10)^(-2) = 1 /100 = 0.01
 learning_rate = 1e-4
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+# optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # 设置训练网络的一些参数
 # 记录训练的次数
@@ -53,14 +63,7 @@ epoch = 1000
 
 resume_epoch = 0
 
-# 恢复训练
-if True:
-    resume_model = "model_zoo/rtsrn_9.pth"
-    model = torch.load(resume_model)
-    resume_epoch = resume_model.split("_")[-1].split(".")[0]
-    resume_epoch = int(resume_epoch) + 1
-    total_valid_step = resume_epoch
-    total_train_step = resume_epoch * len(trainDataloader)
+
 
 # torch.save(model, "model_zoo/rtsrn_{}.pth".format(0))
 
@@ -85,7 +88,8 @@ for i in range(resume_epoch, epoch):
         total_train_step = total_train_step + 1
         if total_train_step % 100 == 0:
             print("训练次数：{}, Loss: {}".format(total_train_step, loss.item()))
-            logging.debug("训练次数：{}, Loss: {}".format(total_train_step, loss.item()))
+            logging.debug("训练次数：{}, Loss: {}".format(total_train_step,
+                                                     loss.item()))
             writer.add_scalar("train_loss", loss.item(), total_train_step)
 
     # 验证步骤开始
