@@ -12,7 +12,7 @@ model = rtsrn(4)
 model = torch.load(resume_model)
 model = model.to(device)
 # print(model)
-dataset = DIV2KValidDataset(root_dir='/mnt/d/dataset/DIV2K/', transform=torchvision.transforms.ToTensor())
+dataset = DIV2KValidDataset(root_dir='/home/reid/yupeng/dataset/DIV2K', transform=torchvision.transforms.ToTensor())
 dataLoader = DataLoader(dataset=dataset, batch_size=1, shuffle=True)
 for data in dataLoader:
     lr, hr, name = data

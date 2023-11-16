@@ -20,8 +20,8 @@ logging.basicConfig(filename='logs/train{}.log'.format(time.time()), level=loggi
 writer = SummaryWriter("./logs_train")
 device = torch.device("cuda")
 
-trainDataset = DIV2KTrainDataset(root_dir='/mnt/d/dataset/DIV2K/', transform=torchvision.transforms.ToTensor())
-validDataset = DIV2KValidDataset(root_dir='/mnt/d/dataset/DIV2K/', transform=torchvision.transforms.ToTensor())
+trainDataset = DIV2KTrainDataset(root_dir='/home/reid/yupeng/dataset/DIV2K', transform=torchvision.transforms.ToTensor())
+validDataset = DIV2KValidDataset(root_dir='/home/reid/yupeng/dataset/DIV2K', transform=torchvision.transforms.ToTensor())
 
 # print(trainDataset[0])
 trainDataloader = DataLoader(dataset=trainDataset, batch_size=1, shuffle=True)
