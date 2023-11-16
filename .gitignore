@@ -5,3 +5,4 @@
 /output/psnr/*
 /model_zoo/*
 /.idea
+/_pycache_
